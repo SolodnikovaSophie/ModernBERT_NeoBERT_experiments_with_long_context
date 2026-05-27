@@ -1,0 +1,60 @@
+seed: 42
+
+model_name: "answerdotai/ModernBERT-base"
+
+train_file: "/data/scratch/solodnicova/datasets/split_by_files/train"
+validation_file: "/data/scratch/solodnicova/datasets/split_by_files/val"
+output_dir: "/data/scratch/solodnicova/ModernBERT/results_nq_joint_with_upgrade"
+
+max_seq_length: 4096
+max_query_length: 60
+doc_stride: 512
+
+n_best_size: 30
+max_answer_length: 100
+
+learning_rate: 3.0e-5
+weight_decay: 0.01
+num_train_epochs: 1
+
+per_device_train_batch_size: 16
+per_device_eval_batch_size: 16
+gradient_accumulation_steps: 1
+warmup_ratio: 0.2
+
+logging_steps: 100
+eval_steps: 500
+save_steps: 500
+save_total_limit: 1
+
+bf16: true
+fp16: false
+gradient_checkpointing: false
+
+dataloader_num_workers: 16
+report_to: "none"
+
+# === Балансировка позиции ответа в окне обучения ===
+# true  — для каждого примера семплируется окно из полного документа так,
+#         чтобы ответ равновероятно попадал в один из бинов позиции.
+# false — старое поведение: контекст = long_answer, без балансировки.
+position_balanced_sampling: true
+num_position_bins: 4
+# Веса CE-лосса по бинам (слева направо: начало → конец документа).
+# Ответы в конце «штрафуются» сильнее, чтобы модель отучилась смотреть только в начало.
+position_bin_loss_weights: [1.0, 1.0, 1.4, 1.5]
+# Опциональная обрезка очень длинных документов вокруг ответа (в словах).
+# null — без обрезки.
+max_doc_words: null
+
+# === Режим SQuAD 2.0 (no-answer) ===
+# true  — в обучение/eval включаются примеры:
+#           * без short_answer (но с long_answer),
+#           * без long_answer вовсе.
+#         Для них train_span=(-1,-1), таргет [CLS], а на eval применяется
+#         null-score thresholding.
+# false — отрицательные примеры отбрасываются (старое поведение).
+allow_unanswerable: false
+# Доля unanswerable в обучении (0..1). null — не даунсэмплировать.
+# Например, 0.3 даст ~30% отрицательных примеров в train.
+unanswerable_ratio: null
