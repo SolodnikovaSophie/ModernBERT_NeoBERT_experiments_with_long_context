@@ -2,9 +2,9 @@ seed: 42
 
 model_name: "answerdotai/ModernBERT-base"
 
-train_file: "/data/scratch/solodnicova/datasets/split_by_files/train"
-validation_file: "/data/scratch/solodnicova/datasets/split_by_files/val"
-output_dir: "/data/scratch/solodnicova/ModernBERT/results_nq_joint_with_upgrade"
+train_file: "ADD YOUR PATH"
+validation_file: "ADD YOUR PATH"
+output_dir: "ADD YOUR PATH"
 
 max_seq_length: 4096
 max_query_length: 60
