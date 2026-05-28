@@ -82,23 +82,58 @@
 
 ---
 
-## 🛠 Общие требования к окружению
+## 🛠 Требования и Установка
 
-Большинство экспериментов в данном проекте оптимизированы для запуска на пользовательском оборудовании (протестировано на NVIDIA RTX 4060 8GB / 16GB RAM).
+Для корректной работы проекта рекомендуется использовать **Python 3.10 – 3.12** и графический ускоритель NVIDIA (рекомендуется от 8 ГБ видеопамяти) с поддержкой CUDA.
 
-* **Python 3.12+**
-* Ускоритель с поддержкой **CUDA 12.4+**
-* Зависимости (для базовой работы):
+### 1. Клонирование репозитория
+Склонируйте проект и перейдите в директорию:
 ```bash
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
-pip install transformers datasets evaluate numpy pandas tqdm
+git clone [https://github.com//SolodnikovaSophie/ModernBERT_NeoBERT_experiments_with_long_context.git](https://github.com//SolodnikovaSophie/ModernBERT_NeoBERT_experiments_with_long_context.git)
+cd ModernBERT_NeoBERT_experiments_with_long_context
 
 ```
 
+### 2. Создание виртуального окружения
 
+Изолированное окружение поможет избежать конфликтов библиотек.
+
+```bash
+python -m venv venv
+
+# Активация для Windows:
+venv\Scripts\activate
+
+# Активация для Linux / macOS:
+source venv/bin/activate
 
 ```
-*(Специфичные библиотеки, такие как `bitsandbytes` для 4-bit квантования или модели оценки BERTScore/BLEURT, описаны в README соответствующих директорий).*
+
+### 3. Установка PyTorch (с поддержкой CUDA)
+
+**Важно:** Проект активно использует GPU-вычисления. Базовая команда `pip install torch` может установить версию для процессора (CPU). Сначала установите PyTorch с нужной версией CUDA (в проекте использовалась CUDA 12.4).
+
+Для Windows / Linux:
+
+```bash
+pip install torch torchvision torchaudio --index-url [https://download.pytorch.org/whl/cu124](https://download.pytorch.org/whl/cu124)
+
+```
+
+### 4. Установка зависимостей проекта
+
+После установки PyTorch установите остальные библиотеки из файла `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+
+```
+
+> **Примечание:**
+> * Если в проекте используются квантованные модели (4-bit/8-bit), вам может потребоваться специальная версия библиотеки `bitsandbytes` для Windows:
+> `pip install bitsandbytes --extra-index-url https://jllllll.github.io/bitsandbytes-windows-webui`
+> 
+> 
 
 ```
 ---
