@@ -18,7 +18,7 @@
 Для запуска процесса fine-tuning используйте конфигурационный файл `config.yaml`. Пример запуска:
 
 ```bash
-python train_neobert_nq_span.py --config configs/config.yaml
+python train_NeoBERT.py --config configs/config.yaml
 
 ```
 
