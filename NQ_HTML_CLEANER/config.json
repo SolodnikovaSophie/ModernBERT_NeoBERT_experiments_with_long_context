@@ -1,0 +1,20 @@
+{
+  "input_path": "C:/Users/ipavl/Диплом/Датасет/v1.0/dev",
+  "runs_root": "add_your/path/to/output/runs",
+  "run_name": "nq_clean_answers_V3_DEV",
+  "input_glob": "*.jsonl.gz",
+  "encoding": "utf-8",
+  "validation": {
+    "enabled": true
+  },
+  "logging": {
+    "level": "INFO",
+    "save_token_stats": true
+  },
+  "split_dataset": {
+    "enabled": true,
+    "mode": "train",
+    "val_ratio": 0.15,
+    "seed": 42
+  }
+}
