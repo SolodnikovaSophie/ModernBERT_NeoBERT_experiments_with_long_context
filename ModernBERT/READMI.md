@@ -82,5 +82,3 @@ python train_modernbert_nq_span.py --config configs/config.yaml
 * `requirements.txt` — список зависимостей проекта.
 
 ---
-
-```
