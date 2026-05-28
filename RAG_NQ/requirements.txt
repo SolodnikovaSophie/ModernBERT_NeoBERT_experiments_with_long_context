@@ -1,0 +1,9 @@
+torch>=2.0.0
+transformers>=4.45.0
+accelerate>=0.30.0
+bitsandbytes>=0.43.0
+tqdm>=4.60.0
+psutil>=5.9.0
+# Semantic metrics
+bert-score>=0.3.13
+bleurt-pytorch>=0.0.1
